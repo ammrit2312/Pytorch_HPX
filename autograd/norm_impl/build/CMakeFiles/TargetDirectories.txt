@@ -1,0 +1,3 @@
+/Volumes/ANDROID/Pytorch/autograd/norm_impl/build/CMakeFiles/rebuild_cache.dir
+/Volumes/ANDROID/Pytorch/autograd/norm_impl/build/CMakeFiles/edit_cache.dir
+/Volumes/ANDROID/Pytorch/autograd/norm_impl/build/CMakeFiles/autograd.dir
