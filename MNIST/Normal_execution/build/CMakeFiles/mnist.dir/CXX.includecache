@@ -4622,7 +4622,7 @@ torch/all.h
 torch/python.h
 -
 
-/Volumes/ANDROID/Pytorch/MNIST/mnist.cpp
+/Volumes/ANDROID/Pytorch/Git/MNIST/Normal_execution/mnist.cpp
 torch/torch.h
 -
 cstddef

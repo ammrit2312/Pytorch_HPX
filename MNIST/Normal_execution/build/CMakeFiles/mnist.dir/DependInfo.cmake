@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Volumes/ANDROID/Pytorch/MNIST/mnist.cpp" "/Volumes/ANDROID/Pytorch/MNIST/build/CMakeFiles/mnist.dir/mnist.cpp.o"
+  "/Volumes/ANDROID/Pytorch/Git/MNIST/Normal_execution/mnist.cpp" "/Volumes/ANDROID/Pytorch/Git/MNIST/Normal_execution/build/CMakeFiles/mnist.dir/mnist.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

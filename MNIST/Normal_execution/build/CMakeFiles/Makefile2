@@ -59,10 +59,10 @@ RM = /Users/amriteshamrit/opt/anaconda3/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Volumes/ANDROID/Pytorch/MNIST
+CMAKE_SOURCE_DIR = /Volumes/ANDROID/Pytorch/Git/MNIST/Normal_execution
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Volumes/ANDROID/Pytorch/MNIST/build
+CMAKE_BINARY_DIR = /Volumes/ANDROID/Pytorch/Git/MNIST/Normal_execution/build
 
 #=============================================================================
 # Target rules for target CMakeFiles/mnist.dir
@@ -71,7 +71,7 @@ CMAKE_BINARY_DIR = /Volumes/ANDROID/Pytorch/MNIST/build
 CMakeFiles/mnist.dir/all:
 	$(MAKE) -f CMakeFiles/mnist.dir/build.make CMakeFiles/mnist.dir/depend
 	$(MAKE) -f CMakeFiles/mnist.dir/build.make CMakeFiles/mnist.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/ANDROID/Pytorch/MNIST/build/CMakeFiles --progress-num=1,2 "Built target mnist"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/ANDROID/Pytorch/Git/MNIST/Normal_execution/build/CMakeFiles --progress-num=1,2 "Built target mnist"
 .PHONY : CMakeFiles/mnist.dir/all
 
 # Include target in all.
@@ -81,9 +81,9 @@ all: CMakeFiles/mnist.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/mnist.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/ANDROID/Pytorch/MNIST/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/ANDROID/Pytorch/Git/MNIST/Normal_execution/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/mnist.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/ANDROID/Pytorch/MNIST/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/ANDROID/Pytorch/Git/MNIST/Normal_execution/build/CMakeFiles 0
 .PHONY : CMakeFiles/mnist.dir/rule
 
 # Convenience name for target.

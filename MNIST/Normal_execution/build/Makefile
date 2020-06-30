@@ -48,10 +48,10 @@ RM = /Users/amriteshamrit/opt/anaconda3/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Volumes/ANDROID/Pytorch/MNIST
+CMAKE_SOURCE_DIR = /Volumes/ANDROID/Pytorch/Git/MNIST/Normal_execution
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Volumes/ANDROID/Pytorch/MNIST/build
+CMAKE_BINARY_DIR = /Volumes/ANDROID/Pytorch/Git/MNIST/Normal_execution/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/ANDROID/Pytorch/MNIST/build/CMakeFiles /Volumes/ANDROID/Pytorch/MNIST/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/ANDROID/Pytorch/Git/MNIST/Normal_execution/build/CMakeFiles /Volumes/ANDROID/Pytorch/Git/MNIST/Normal_execution/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/ANDROID/Pytorch/MNIST/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/ANDROID/Pytorch/Git/MNIST/Normal_execution/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

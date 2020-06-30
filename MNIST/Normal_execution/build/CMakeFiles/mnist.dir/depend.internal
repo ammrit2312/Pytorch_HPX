@@ -374,4 +374,4 @@ CMakeFiles/mnist.dir/mnist.cpp.o
  /Users/amriteshamrit/pytorch/torch/include/torch/csrc/utils/tensor_numpy.h
  /Users/amriteshamrit/pytorch/torch/include/torch/csrc/utils/variadic.h
  /Users/amriteshamrit/pytorch/torch/include/torch/extension.h
- /Volumes/ANDROID/Pytorch/MNIST/mnist.cpp
+ /Volumes/ANDROID/Pytorch/Git/MNIST/Normal_execution/mnist.cpp
