@@ -1,0 +1,3 @@
+/Volumes/ANDROID/Pytorch/MNIST/build/CMakeFiles/rebuild_cache.dir
+/Volumes/ANDROID/Pytorch/MNIST/build/CMakeFiles/edit_cache.dir
+/Volumes/ANDROID/Pytorch/MNIST/build/CMakeFiles/mnist.dir
