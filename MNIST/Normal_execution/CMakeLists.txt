@@ -26,5 +26,5 @@ if (MSVC)
                      POST_BUILD
                      COMMAND ${CMAKE_COMMAND} -E copy_if_different
                      ${TORCH_DLLS}
-                     $<TARGET_FILE_DIR:mnist>)
+                     $<TARGET_FILE_DIR:normal_execution>)
 endif (MSVC)
