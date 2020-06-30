@@ -27,3 +27,12 @@ add_hpx_executable(autograd
 
 target_compile_features(mnist PUBLIC cxx_range_for)
 target_link_libraries(${PROJECT_NAME} "${TORCH_LIBRARIES}")
+
+if (MSVC)
+  file(GLOB TORCH_DLLS "${TORCH_INSTALL_PREFIX}/lib/*.dll")
+  add_custom_command(TARGET mnist
+                     POST_BUILD
+                     COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                     ${TORCH_DLLS}
+                     $<TARGET_FILE_DIR:hpx_execution>)
+endif (MSVC)
