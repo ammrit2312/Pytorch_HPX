@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 project(mnist CXX)
-set(CMAKE_CXX_STANDARD 14)
+#set(CMAKE_CXX_STANDARD 14)
 
 # Instruct cmake to find the HPX settings
 find_package(HPX REQUIRED)
@@ -19,9 +19,9 @@ if (DOWNLOAD_MNIST)
 endif()
 
 # Build your application using HPX
-add_hpx_executable(autograd
+add_hpx_executable(mnist
         ESSENTIAL
-        SOURCES hpx_autograd.cpp
+        SOURCES hpx_mnist.cpp
         DEPENDENCIES ${Torch_LIBS}
         COMPONENT_DEPENDENCIES iostreams)
 
