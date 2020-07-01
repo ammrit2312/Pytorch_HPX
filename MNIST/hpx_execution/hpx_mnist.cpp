@@ -115,10 +115,10 @@ void test(
   }
 
   test_loss /= dataset_size;
-  hpx::printf(
-      "\nTest set: Average loss: %.4f | Accuracy: %.3f\n",
-      test_loss,
-      static_cast<double>(correct) / dataset_size);
+  hpx::cout<<
+      "\nTest set: Average loss: %.4f | Accuracy: %.3f\n"<<
+      test_loss<<
+      static_cast<double>(correct) / dataset_size;
 }
 
 auto main() -> int {
