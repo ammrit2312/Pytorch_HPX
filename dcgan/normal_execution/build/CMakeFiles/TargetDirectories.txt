@@ -1,0 +1,3 @@
+/Volumes/ANDROID/Pytorch/Pytorch_HPX/dcgan/normal_execution/build/CMakeFiles/rebuild_cache.dir
+/Volumes/ANDROID/Pytorch/Pytorch_HPX/dcgan/normal_execution/build/CMakeFiles/edit_cache.dir
+/Volumes/ANDROID/Pytorch/Pytorch_HPX/dcgan/normal_execution/build/CMakeFiles/dcgan.dir
