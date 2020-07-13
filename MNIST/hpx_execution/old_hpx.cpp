@@ -15,10 +15,9 @@
 #include <hpx/include/parallel_generate.hpp>
 #include <hpx/include/parallel_sort.hpp>
 
-size_t epoch;
+
 torch::DeviceType device_type;
   torch::Device device(device_type);
-  
 // Where to find the MNIST dataset.
 const char* kDataRoot = "./data";
 
@@ -33,23 +32,6 @@ const int64_t kNumberOfEpochs = 10;
 
 // After how many batches to log a new update with the loss value.
 const int64_t kLogInterval = 10;
-
-auto train_dataset = torch::data::datasets::MNIST(kDataRoot)
-                           .map(torch::data::transforms::Normalize<>(0.1307, 0.3081))
-                           .map(torch::data::transforms::Stack<>());
-  const size_t train_dataset_size = train_dataset.size().value();
-  auto train_loader =
-      torch::data::make_data_loader<torch::data::samplers::SequentialSampler>(
-          std::move(train_dataset), kTrainBatchSize);
-
-  auto test_dataset = torch::data::datasets::MNIST(
-                          kDataRoot, torch::data::datasets::MNIST::Mode::kTest)
-                          .map(torch::data::transforms::Normalize<>(0.1307, 0.3081))
-                          .map(torch::data::transforms::Stack<>());
-  const size_t test_dataset_size = test_dataset.size().value();
-  auto test_loader =
-      torch::data::make_data_loader(std::move(test_dataset), kTestBatchSize);
-
 
 struct Net : torch::nn::Module {
   Net()
@@ -83,10 +65,11 @@ struct Net : torch::nn::Module {
 } model;
 
 template <typename DataLoader>
-void train() {
-torch::optim::SGD optimizer(model.parameters(), torch::optim::SGDOptions(0.01).momentum(0.5));
-
-    DataLoader& data_loader = *train_loader;
+void train(
+    size_t epoch,
+    DataLoader& data_loader,
+    torch::optim::Optimizer& optimizer,
+    size_t dataset_size) {
   //DataLoader * data_loader = loader;
   model.train();
   size_t batch_idx = 0;
@@ -104,15 +87,18 @@ torch::optim::SGD optimizer(model.parameters(), torch::optim::SGDOptions(0.01).m
           "\rTrain Epoch: %ld [%5ld/%5ld] Loss: %.4f",
           epoch,
           batch_idx * batch.data.size(0),
-          train_dataset_size,
+          dataset_size,
           loss.template item<float>());
     }
   }
 }
 
 template <typename DataLoader>
-void test() {
-  DataLoader& data_loader = *test_loader;
+void test(
+    Net& model,
+    torch::Device device,
+    DataLoader& data_loader,
+    size_t dataset_size) {
   torch::NoGradGuard no_grad;
   model.eval();
   double test_loss = 0;
@@ -130,11 +116,11 @@ void test() {
     correct += pred.eq(targets).sum().template item<int64_t>();
   }
 
-  test_loss /= test_dataset_size;
+  test_loss /= dataset_size;
   hpx::cout<<
       "\nTest set: Average loss: %.4f | Accuracy: %.3f\n"<<
       test_loss<<
-      static_cast<double>(correct) / test_dataset_size;
+      static_cast<double>(correct) / dataset_size;
 }
 
 auto main() -> int {
@@ -153,12 +139,28 @@ auto main() -> int {
  // Net model;
   model.to(device);
 
-torch::optim::SGD optimizer(
+  auto train_dataset = torch::data::datasets::MNIST(kDataRoot)
+                           .map(torch::data::transforms::Normalize<>(0.1307, 0.3081))
+                           .map(torch::data::transforms::Stack<>());
+  const size_t train_dataset_size = train_dataset.size().value();
+  auto train_loader =
+      torch::data::make_data_loader<torch::data::samplers::SequentialSampler>(
+          std::move(train_dataset), kTrainBatchSize);
+
+  auto test_dataset = torch::data::datasets::MNIST(
+                          kDataRoot, torch::data::datasets::MNIST::Mode::kTest)
+                          .map(torch::data::transforms::Normalize<>(0.1307, 0.3081))
+                          .map(torch::data::transforms::Stack<>());
+  const size_t test_dataset_size = test_dataset.size().value();
+  auto test_loader =
+      torch::data::make_data_loader(std::move(test_dataset), kTestBatchSize);
+
+  torch::optim::SGD optimizer(
       model.parameters(), torch::optim::SGDOptions(0.01).momentum(0.5));
 
-  for (epoch = 1; epoch <= kNumberOfEpochs; ++epoch) {
-    hpx::future<void> f1 = hpx::async(train);
+  for (size_t epoch = 1; epoch <= kNumberOfEpochs; ++epoch) {
+    hpx::future<void> f1 = hpx::async(train, epoch, (*train_loader), optimizer, train_dataset_size);
 	
-    hpx::future<void> f2 = hpx::async(test);
+    hpx::future<void> f2 = hpx::async(test,model, device, *test_loader, test_dataset_size);
   }
 }
