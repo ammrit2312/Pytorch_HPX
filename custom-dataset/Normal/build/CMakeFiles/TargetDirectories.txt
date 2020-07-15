@@ -1,0 +1,3 @@
+/Volumes/ANDROID/Pytorch/custom-dataset/buildn/CMakeFiles/rebuild_cache.dir
+/Volumes/ANDROID/Pytorch/custom-dataset/buildn/CMakeFiles/edit_cache.dir
+/Volumes/ANDROID/Pytorch/custom-dataset/buildn/CMakeFiles/custom-dataset.dir

@@ -1,0 +1,7 @@
+/Volumes/ANDROID/Pytorch/custom-dataset/build/CMakeFiles/install/local.dir
+/Volumes/ANDROID/Pytorch/custom-dataset/build/CMakeFiles/install/strip.dir
+/Volumes/ANDROID/Pytorch/custom-dataset/build/CMakeFiles/install.dir
+/Volumes/ANDROID/Pytorch/custom-dataset/build/CMakeFiles/list_install_components.dir
+/Volumes/ANDROID/Pytorch/custom-dataset/build/CMakeFiles/rebuild_cache.dir
+/Volumes/ANDROID/Pytorch/custom-dataset/build/CMakeFiles/edit_cache.dir
+/Volumes/ANDROID/Pytorch/custom-dataset/build/CMakeFiles/custom-dataset.dir
