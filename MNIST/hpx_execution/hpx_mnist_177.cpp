@@ -16,6 +16,8 @@
 #include <hpx/include/parallel_sort.hpp>
 
 
+torch::DeviceType device_type;
+torch::Device device(device_type);
 // Where to find the MNIST dataset.
 const char* kDataRoot = "./data";
 
@@ -60,16 +62,15 @@ struct Net : torch::nn::Module {
   torch::nn::Dropout2d conv2_drop;
   torch::nn::Linear fc1;
   torch::nn::Linear fc2;
-};
+} model;
 
 template <typename DataLoader>
 void train(
     size_t epoch,
-    Net& model,
-    torch::Device device,
     DataLoader& data_loader,
     torch::optim::Optimizer& optimizer,
     size_t dataset_size) {
+  //DataLoader * data_loader = loader;
   model.train();
   size_t batch_idx = 0;
   for (auto& batch : data_loader) {
@@ -83,7 +84,7 @@ void train(
 
     if (batch_idx++ % kLogInterval == 0) {
       std::printf(
-          "\rTrain Epoch: %ld [%5lld/%5ld] Loss: %.4f",
+          "\rTrain Epoch: %ld [%5ld/%5ld] Loss: %.4f",
           epoch,
           batch_idx * batch.data.size(0),
           dataset_size,
@@ -116,16 +117,16 @@ void test(
   }
 
   test_loss /= dataset_size;
-  std::printf(
-      "\nTest set: Average loss: %.4f | Accuracy: %.3f\n",
-      test_loss,
-      static_cast<double>(correct) / dataset_size);
+  hpx::cout<<
+      "\nTest set: Average loss: %.4f | Accuracy: %.3f\n"<<
+      test_loss<<
+      static_cast<double>(correct) / dataset_size;
 }
 
 auto main() -> int {
   torch::manual_seed(1);
 
-  torch::DeviceType device_type;
+
   if (torch::cuda::is_available()) {
     hpx::cout << "CUDA available! Training on GPU." << hpx::endl;
     device_type = torch::kCUDA;
@@ -133,9 +134,9 @@ auto main() -> int {
     hpx::cout << "Training on CPU." << hpx::endl;
     device_type = torch::kCPU;
   }
-  torch::Device device(device_type);
+  
 
-  Net model;
+ // Net model;
   model.to(device);
 
   auto train_dataset = torch::data::datasets::MNIST(kDataRoot)
@@ -158,11 +159,9 @@ auto main() -> int {
       model.parameters(), torch::optim::SGDOptions(0.01).momentum(0.5));
 
   for (size_t epoch = 1; epoch <= kNumberOfEpochs; ++epoch) {
-    //hpx::future<void> f1 = hpx::async([&]{return train(epoch, model, device, *train_loader, optimizer, train_dataset_size);});
-    //f1.get();
-    train(epoch, model, device, *train_loader, optimizer, train_dataset_size);
+    hpx::future<void> f1 = hpx::async([&]{return train(epoch, (*train_loader), optimizer, train_dataset_size);});
+	//f1.get();
     hpx::future<void> f2 = hpx::async([&]{return test(model, device, *test_loader, test_dataset_size);});
-    f2.get();
-    //test(model, device, *test_loader, test_dataset_size);
+    //f2.get();
   }
 }
