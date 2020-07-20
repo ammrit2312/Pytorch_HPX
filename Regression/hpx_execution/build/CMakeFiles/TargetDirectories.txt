@@ -1,0 +1,7 @@
+/Volumes/ANDROID/Pytorch/Regression/hpx_execution/build/CMakeFiles/install/strip.dir
+/Volumes/ANDROID/Pytorch/Regression/hpx_execution/build/CMakeFiles/install.dir
+/Volumes/ANDROID/Pytorch/Regression/hpx_execution/build/CMakeFiles/list_install_components.dir
+/Volumes/ANDROID/Pytorch/Regression/hpx_execution/build/CMakeFiles/rebuild_cache.dir
+/Volumes/ANDROID/Pytorch/Regression/hpx_execution/build/CMakeFiles/edit_cache.dir
+/Volumes/ANDROID/Pytorch/Regression/hpx_execution/build/CMakeFiles/install/local.dir
+/Volumes/ANDROID/Pytorch/Regression/hpx_execution/build/CMakeFiles/regression.dir

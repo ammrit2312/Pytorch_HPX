@@ -1,0 +1,3 @@
+/Volumes/ANDROID/Pytorch/Regression/Normal_execution/build/CMakeFiles/rebuild_cache.dir
+/Volumes/ANDROID/Pytorch/Regression/Normal_execution/build/CMakeFiles/edit_cache.dir
+/Volumes/ANDROID/Pytorch/Regression/Normal_execution/build/CMakeFiles/regression.dir
