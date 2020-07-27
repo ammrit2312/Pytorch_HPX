@@ -410,7 +410,7 @@ int main(){
     replace_std(fn);
     get_fun(fn);
     replace_func();
-    //forloop();
+    forloop();
     //Inputting in the file
     fstream output_f;
     string hpxname = "hpx_"+fn;
