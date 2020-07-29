@@ -131,9 +131,7 @@ void replace_func(){
                             //then it is a function call
                             string medium="";
                             int end_brack=0;
-                            for(end_brack=p_brack_in+1; line[end_brack]!='\n'; end_brack++){
-                                if(line[end_brack]=='{')
-                            		break;
+                            for(end_brack=p_brack_in+1; line[end_brack]!=')'; end_brack++){
                                 medium+=line[end_brack];
                             }
                             int cha_present=0;
@@ -151,7 +149,7 @@ void replace_func(){
                                 update+="hpx::future<"+dtype[ind]+"> f"+to_string(start)+" = hpx::async( "+func_in+" );\n\tif(f"+to_string(start)+".get()"+last+"\n";
                             }
                             else{
-                                update+="hpx::future<"+dtype[ind]+"> f"+to_string(start)+" = hpx::async( "+func_in+", "+medium+" ;\n\tif(f"+to_string(start)+".get()"+last+"\n";
+                                update+="hpx::future<"+dtype[ind]+"> f"+to_string(start)+" = hpx::async( "+func_in+", "+medium+" );\n\tif(f"+to_string(start)+".get()"+last+"\n";
                             }
                         }
                         else{
