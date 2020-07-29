@@ -241,80 +241,96 @@ void replace_func(){
 }
 
 void forloop()
-{   int flag = 0,cb=0,cbp=0;string update = "";
+{   int flag = 0,cb=0,cbp=0,curlbr=0,flp=0;string update = "";
     for(int i=0;i<output.length();i++)
     {
-        string line = "";
+        string line = "";int sem=0;
         while(output[i]!='\n')
         {
             line+=output[i];
             i++;
         }
-        for(int st=0;st<line.length();st++){
-        if(line[st] == 'f' && line[st+1] == 'o' && line[st+2] == 'r' )
+        for(int h =0;h<line.length();h++)
+            {
+                if(line[h] == ';'){sem++;}
+            }
+        if(sem==2){flp=1;}
+        for(int st=0;st<line.length();st++)
         {
-            flag = 1;
-        }
-        //if for() is present
-        if(flag == 1)
-        {
-            //getting the conditions inside
-            if(line[st] == '(')
-            {   string c="";int semi =0;
-                int x=1,curlbr = 0;
-                while(line[st+x] != ')')
+            if(line[st] == 'f' && line[st+1] == 'o' && line[st+2] == 'r' && (line[st+3] == ' ' || line[st+3] == '(') && flp==1)
+            {
+                flag = 1;cout<<line<<endl;
+            }
+            //if for() is present
+            if(flag == 1)
+            {
+                //getting the conditions inside
+                if(line[st] == '(')
                 {
-                    c+=line[st+x];x++;
-                }
-                //checking if it has 2 semicolons
-                for(int j=0;j<c.length();j++)
-                {
-                    if(c[j] == ';')
-                        semi++;
-                }
-                //if there are 2 ; , extract start and end
-                if(semi == 2)
-                {
-                    string a="",b="",a1="",a2="",b2="",full = "";
-                    int j=0;
-                    while(c[j] != ';'){a+=c[j];j++;}j++;       // first condition
-                    while(c[j] != ';'){b+=c[j];j++;}       //second condition
-                    j=0;
-                    while(a[j]!='='){a1+=a[j];j++;}
-                    for(int k=j+1;k<a.length();k++){a2+=a[k];}
-                    //cout<<a<<endl<<b;
-                    int ind=0,le=0;
-                    while(b[ind]!= '<'){ind++;}ind++;
-                    if(b[ind] == '='){le=1;ind++;}                  // <=
-                    for(int k=ind;k<b.length();k++){b2+=b[k];}
-                    if(le==0){full = "\thpx::parallel::v2::for_loop_n(hpx::parallel::execution::par,"+a2+","+b2+",[&]("+a1+")";}
-                    else{full = "\thpx::parallel::v2::for_loop_n(hpx::parallel::execution::par,"+a2+","+b2+"+1,[&]("+a1+")";}
-                    //cout<<full<<endl;
-                    cb = st;
-                    while(line[cb]!='\n')
+                    string c="";int semi =0;
+                    int x=1;
+                    while(line[st+x] != ')')
                     {
-                        if(line[cb] == '{')
-                            //cbp=1;
-                            full+='{';                          //curly brackets present
-                        cb++;
+                        c+=line[st+x];x++;
                     }
-                    for(int j=st;j<output.length();j++)
+                    //checking if it has 2 semicolons
+                    for(int j=0;j<c.length();j++)
                     {
-                        if(output[j] == '{')
-                            curlbr++;
-                        if(output[j] == '}')
+                        if(c[j] == ';')
+                            semi++;
+                    }
+                    //if there are 2 ; , extract start and end
+                    if(semi == 2)
+                    {
+                        string a="",b="",a1="",a2="",b2="",full = "";
+                        int j=0;
+                        while(c[j] != ';'){a+=c[j];j++;}j++;       // first condition
+                        while(c[j] != ';'){b+=c[j];j++;}       //second condition
+                        j=0;
+                        while(a[j]!='='){a1+=a[j];j++;}
+                        for(int k=j+1;k<a.length();k++){a2+=a[k];}
+                        //cout<<a<<endl<<b;
+                        int ind=0,le=0;
+                        while(b[ind]!= '<'){ind++;}ind++;
+                        if(b[ind] == '='){le=1;ind++;}                  // <=
+                        for(int k=ind;k<b.length();k++){b2+=b[k];}
+                        if(le==0){full = "\thpx::parallel::v2::for_loop_n(hpx::parallel::execution::par,"+a2+","+b2+",[&]("+a1+")";}
+                        else{full = "\thpx::parallel::v2::for_loop_n(hpx::parallel::execution::par,"+a2+","+b2+"+1,[&]("+a1+")";}
+                        //cout<<full<<endl;
+                        cb = st;
+                        while(line[cb]!='\n')
                         {
-                                curlbr--;
-                                if(curlbr == 0)
-                                {
-                                    output[j+1]=')';output[j+2]=';';break;
-                                }
+                            if(line[cb] == '{')
+                            {
+                                full+='{';break;                          //curly brackets present
+                            }
+                            cb++;
                         }
+                        line = full;
                     }
-                    flag = 0;cb=0;cbp=0;line = full;
                 }
+                //cout<<line<<endl;
             }
         }
+        if(flag == 1 && flp==1)
+        {
+            for(int j=0;j<line.length();j++)
+                {
+                    if(line[j] == '{')
+                    {
+                        curlbr++;
+                    }
+                    if(line[j] == '}')
+                    {
+                        curlbr--;
+                        if(curlbr == 0)
+                        {
+                            //line[j+1]=')';line[j+2]=';';
+                            line+=");";
+                            cb=0;flag=0;flp=0;break;
+                        }
+                    }
+                }
         }
         update+=line;
         update+="\n";
