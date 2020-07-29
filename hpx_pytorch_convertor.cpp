@@ -17,7 +17,7 @@ void write(string name)
     //string hpxname = "hpx_"+name;
     //output_f.open(hpxname, ios::out);
 
-    string header = "//hpx header files\n#include <hpx/hpx_main.hpp>\n#include <hpx/include/iostreams.hpp>\n#include <hpx/hpx.hpp>\n#include <hpx/hpx_init.hpp>\n#include <hpx/include/async.hpp>\n#include <hpx/include/lcos.hpp>\n#include <hpx/include/parallel_generate.hpp>\n#include <hpx/include/parallel_sort.hpp>\n//--------------------------------\n";
+    string header = "//hpx header files\n#include <hpx/hpx_main.hpp>\n#include <hpx/include/iostreams.hpp>\n#include <hpx/hpx.hpp>\n#include <hpx/hpx_init.hpp>\n#include<hpx/include/parallel_for_loop.hpp>\n#include <hpx/include/async.hpp>\n#include <hpx/include/lcos.hpp>\n#include <hpx/include/parallel_generate.hpp>\n#include <hpx/include/parallel_sort.hpp>\n//--------------------------------\n";
     //output_f<<header;
     //output_f.close();
     input_f.close();
@@ -259,7 +259,7 @@ void forloop()
         {
             if(line[st] == 'f' && line[st+1] == 'o' && line[st+2] == 'r' && (line[st+3] == ' ' || line[st+3] == '(') && flp==1)
             {
-                flag = 1;cout<<line<<endl;
+                flag = 1;
             }
             //if for() is present
             if(flag == 1)
