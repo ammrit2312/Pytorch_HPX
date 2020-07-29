@@ -149,7 +149,7 @@ void replace_func(){
                                 update+="hpx::future<"+dtype[ind]+"> f"+to_string(start)+" = hpx::async( "+func_in+" );\n\tif(f"+to_string(start)+".get()"+last+"\n";
                             }
                             else{
-                                update+="hpx::future<"+dtype[ind]+"> f"+to_string(start)+" = hpx::async( "+func_in+", "+medium+" );\n\tif(f"+to_string(start)+".get()"+last+"\n";
+                                update+="hpx::future<"+dtype[ind]+"> f"+to_string(start)+" = hpx::async( "+func_in+", "+medium+" ;\n\tif(f"+to_string(start)+".get()"+last+"\n";
                             }
                         }
                         else{
@@ -190,7 +190,7 @@ void replace_func(){
                                 data_grab+=line[i];
                             }
                             string medium="";
-                            for(int i=paran+1; line[i]!=')'; i++){
+                            for(int i=paran+1; line[i]!=';'; i++){
                                 medium+=line[i];
                             }
                             int cha_present=0;
@@ -213,7 +213,7 @@ void replace_func(){
                                     update+="\thpx::future<"+dtype[ind]+"> f"+to_string(start)+" = hpx::async( "+func+" );\n\t"+data_grab+"f"+to_string(start)+".get();\n";
                                 }
                                 else{
-                                    update+="\thpx::future<"+dtype[ind]+"> f"+to_string(start)+" = hpx::async( "+func+", "+medium+" );\n\t"+data_grab+"f"+to_string(start)+".get();\n";
+                                    update+="\thpx::future<"+dtype[ind]+"> f"+to_string(start)+" = hpx::async( "+func+", "+medium+" ;\n\t"+data_grab+"f"+to_string(start)+".get();\n";
                                 }
                             }
                             //cout<<func<<"\t"<<data_grab<<endl;
