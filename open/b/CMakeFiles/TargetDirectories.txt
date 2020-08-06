@@ -1,0 +1,17 @@
+/home/srikar/Desktop/open/b/CMakeFiles/install/strip.dir
+/home/srikar/Desktop/open/b/CMakeFiles/install/local.dir
+/home/srikar/Desktop/open/b/CMakeFiles/package_source.dir
+/home/srikar/Desktop/open/b/CMakeFiles/edit_cache.dir
+/home/srikar/Desktop/open/b/CMakeFiles/package.dir
+/home/srikar/Desktop/open/b/CMakeFiles/rebuild_cache.dir
+/home/srikar/Desktop/open/b/CMakeFiles/install.dir
+/home/srikar/Desktop/open/b/CMakeFiles/list_install_components.dir
+/home/srikar/Desktop/open/b/opennn/CMakeFiles/install/strip.dir
+/home/srikar/Desktop/open/b/opennn/CMakeFiles/install/local.dir
+/home/srikar/Desktop/open/b/opennn/CMakeFiles/install.dir
+/home/srikar/Desktop/open/b/opennn/CMakeFiles/list_install_components.dir
+/home/srikar/Desktop/open/b/opennn/CMakeFiles/package.dir
+/home/srikar/Desktop/open/b/opennn/CMakeFiles/rebuild_cache.dir
+/home/srikar/Desktop/open/b/opennn/CMakeFiles/package_source.dir
+/home/srikar/Desktop/open/b/opennn/CMakeFiles/opennn.dir
+/home/srikar/Desktop/open/b/opennn/CMakeFiles/edit_cache.dir
