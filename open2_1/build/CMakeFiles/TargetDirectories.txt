@@ -1,0 +1,17 @@
+/Users/amriteshamrit/Desktop/opennn/build/CMakeFiles/install/local.dir
+/Users/amriteshamrit/Desktop/opennn/build/CMakeFiles/install/strip.dir
+/Users/amriteshamrit/Desktop/opennn/build/CMakeFiles/install.dir
+/Users/amriteshamrit/Desktop/opennn/build/CMakeFiles/package_source.dir
+/Users/amriteshamrit/Desktop/opennn/build/CMakeFiles/rebuild_cache.dir
+/Users/amriteshamrit/Desktop/opennn/build/CMakeFiles/edit_cache.dir
+/Users/amriteshamrit/Desktop/opennn/build/CMakeFiles/list_install_components.dir
+/Users/amriteshamrit/Desktop/opennn/build/CMakeFiles/package.dir
+/Users/amriteshamrit/Desktop/opennn/build/opennn/CMakeFiles/install/local.dir
+/Users/amriteshamrit/Desktop/opennn/build/opennn/CMakeFiles/list_install_components.dir
+/Users/amriteshamrit/Desktop/opennn/build/opennn/CMakeFiles/package_source.dir
+/Users/amriteshamrit/Desktop/opennn/build/opennn/CMakeFiles/rebuild_cache.dir
+/Users/amriteshamrit/Desktop/opennn/build/opennn/CMakeFiles/edit_cache.dir
+/Users/amriteshamrit/Desktop/opennn/build/opennn/CMakeFiles/package.dir
+/Users/amriteshamrit/Desktop/opennn/build/opennn/CMakeFiles/install/strip.dir
+/Users/amriteshamrit/Desktop/opennn/build/opennn/CMakeFiles/install.dir
+/Users/amriteshamrit/Desktop/opennn/build/opennn/CMakeFiles/opennn.dir
