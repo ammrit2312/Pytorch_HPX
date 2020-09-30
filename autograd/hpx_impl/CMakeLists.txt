@@ -5,7 +5,9 @@ cmake_minimum_required(VERSION 2.8)
 project(autograd CXX)
 
 # Instruct cmake to find the HPX settings
-find_package(HPX REQUIRED)
+#Change HPXYMY to HPX
+find_package(HPXYMY REQUIRED)
+
 find_package(Torch REQUIRED PATHS /Users/amriteshamrit/pytorch)
 
 # Build your application using HPX
