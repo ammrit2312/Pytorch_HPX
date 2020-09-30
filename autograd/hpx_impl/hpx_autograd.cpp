@@ -23,7 +23,7 @@ void basic_autograd_operations_example() {
 
   // Do a tensor operation:
 	//change x1 to x
-  auto y = x1 + 2;
+  auto y = x + 2;
   hpx::cout << y << hpx::endl;
 
   // ``y`` was created as a result of an operation, so it has a ``grad_fn``.
