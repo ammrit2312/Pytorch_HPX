@@ -105,8 +105,8 @@ void test(
   int32_t correct = 0;
   //Error Here auto 108 109 aut
   for (const auto& batch : data_loader) {
-    aut data = batch.data.to(device), targets = batch.target.to(device);
-    aut output = model.forward(data);
+    auto data = batch.data.to(device), targets = batch.target.to(device);
+    auto output = model.forward(data);
     test_loss += torch::nll_loss(
                      output,
                      targets,
@@ -131,7 +131,7 @@ auto main() -> int {
   if (torch::cuda::is_available()) {
     hpx::cout << "CUDA available! Training on GPU." << hpx::endl;
     //Error Here kCUDA 134
-    device_type = torch::CUDA;
+    device_type = torch::kCUDA;
   } else {
     hpx::cout << "Training on CPU." << hpx::endl;
     device_type = torch::kCPU;
@@ -165,7 +165,7 @@ auto main() -> int {
     //f1.get();
     train(epoch, model, device, *train_loader, optimizer, train_dataset_size);
     //Error Here future<void> 168
-    hpx::future<int> f2 = hpx::async([&]{return test(model, device, *test_loader, test_dataset_size);});
+    hpx::future<void> f2 = hpx::async([&]{return test(model, device, *test_loader, test_dataset_size);});
     f2.get();
     //test(model, device, *test_loader, test_dataset_size);
   }
