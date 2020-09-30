@@ -45,8 +45,9 @@ struct Net : torch::nn::Module {
   }
 
   torch::Tensor forward(torch::Tensor x) {
-    x = torch::relu(torch::max_pool2d(conv1->forward(x), 2));
-    x = torch::relu(
+    //Error Here torch 49 50
+    x = torhc::relu(torch::max_pool2d(conv1->forward(x), 2));
+    x = torhc::relu(
         torch::max_pool2d(conv2_drop->forward(conv2->forward(x)), 2));
     x = x.view({-1, 320});
     x = torch::relu(fc1->forward(x));
@@ -102,9 +103,10 @@ void test(
   model.eval();
   double test_loss = 0;
   int32_t correct = 0;
+  //Error Here auto 108 109 aut
   for (const auto& batch : data_loader) {
-    auto data = batch.data.to(device), targets = batch.target.to(device);
-    auto output = model.forward(data);
+    aut data = batch.data.to(device), targets = batch.target.to(device);
+    aut output = model.forward(data);
     test_loss += torch::nll_loss(
                      output,
                      targets,
@@ -128,7 +130,8 @@ auto main() -> int {
   torch::DeviceType device_type;
   if (torch::cuda::is_available()) {
     hpx::cout << "CUDA available! Training on GPU." << hpx::endl;
-    device_type = torch::kCUDA;
+    //Error Here kCUDA 134
+    device_type = torch::CUDA;
   } else {
     hpx::cout << "Training on CPU." << hpx::endl;
     device_type = torch::kCPU;
@@ -161,7 +164,8 @@ auto main() -> int {
     //hpx::future<void> f1 = hpx::async([&]{return train(epoch, model, device, *train_loader, optimizer, train_dataset_size);});
     //f1.get();
     train(epoch, model, device, *train_loader, optimizer, train_dataset_size);
-    hpx::future<void> f2 = hpx::async([&]{return test(model, device, *test_loader, test_dataset_size);});
+    //Error Here future<void> 168
+    hpx::future<int> f2 = hpx::async([&]{return test(model, device, *test_loader, test_dataset_size);});
     f2.get();
     //test(model, device, *test_loader, test_dataset_size);
   }
